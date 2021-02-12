@@ -10,7 +10,7 @@ fetch('https://meme-api.herokuapp.com/gimme/1')
     }
     console.log(payload)
 
-    fetch('http://xmeme-soh.herokuapp.com/memes',{
+    fetch('https://xmeme-soh.herokuapp.com/memes',{
         method:"POST",
         headers: {
             'Content-Type': 'application/json',
