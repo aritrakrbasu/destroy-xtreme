@@ -1,15 +1,25 @@
-fetch('https://meme-api.herokuapp.com/gimme/1')
+fetch('https://meme-api.herokuapp.com/gimme/100')
 .then(function(response){
     return response.json();// convert it to a pure JavaScript object
 })
 .then(function(data){
-    var payload = {
-        "name":data.memes[0].author,
-        "caption":data.memes[0].title,
-        "url":data.memes[0].url,
-    }
-    console.log(payload)
 
+    data.memes.forEach(meme => {
+        var payload = {
+            "name":meme.author,
+            "caption":meme.title,
+            "url":meme.url,
+        } 
+        spamdata(payload)
+    });
+
+})
+.catch(function(err) {
+    console.log(err);
+  });
+
+function spamdata(payload)
+{
     fetch('https://xmeme-soh.herokuapp.com/memes',{
         method:"POST",
         headers: {
@@ -19,13 +29,10 @@ fetch('https://meme-api.herokuapp.com/gimme/1')
     })
     .then(response => response.json())
     .then(data => {
-    console.log('Success:', data);
+        console.log("#spamed");
+        return true;
     })
     .catch((error) => {
-    console.error('Error:', error);
+        return false;
     });
-
-})
-.catch(function(err) {
-    console.log(err);
-  });
+}
