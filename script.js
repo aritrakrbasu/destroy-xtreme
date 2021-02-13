@@ -19,7 +19,6 @@ fetch(memeurl)
 .then(function(data){
 
     data.memes.forEach(meme => {
-        console.log(meme)
         var payload = {
             "name":meme.author,
             "caption":meme.title,
